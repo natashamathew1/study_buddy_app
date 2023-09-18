@@ -1,0 +1,91 @@
+Chat Function Citation
+
+Title: django-chat-app
+Author: Tomi Tokko
+Date: 10/15/2022
+URL: https://github.com/tomitokko/django-chat-app
+
+Rating
+Title: Django-Star-Rating
+Author: WildFish
+Date: 10/13/2022
+URL: https://django-star-ratings.readthedocs.io/en/stable/
+
+Displaying API Data
+
+Title: How to display API data in Django Template
+Author: Jay Gupta
+Date: 10/20/2022
+URL: https://studygyaan.com/django/how-to-display-api-response-in-html-using-django-template
+
+Handling API Data
+
+Title: Consume Rest API in Django Web Application
+Date: 10/23/2022
+URL: https://medium.com/@nutanbhogendrasharma/consume-rest-api-in-django-web-application-130c0daa6f70
+
+Multiple Chat Function Citation
+
+Date: 11/29/2022
+URL: https://multiple-select.wenzhixin.net.cn/
+
+
+Friends Function
+Title: Step by Step guide to add friends with Django
+Date: 11/10/2022
+URL: https://medium.com/analytics-vidhya/add-friends-with-689a2fa4e41d
+
+Friends Function
+Title: How to Create a Friend Request Model in Django
+Date: 11/10/22
+URL: https://python.plainenglish.io/creating-a-friend-request-model-in-django-640257b2c67f
+
+Profile Function
+Title: Django Custom user profile
+Date: 10/20/2022
+URL: https://ordinarycoders.com/django-custom-user-profile
+
+
+Messages Help
+
+Title: Deleting/Clearing django.contrib.messages
+Author: Avukonke Peter
+Date: 12/06/2022
+URL: https://stackoverflow.com/questions/42546006/deleting-clearing-django-contrib-messages
+
+Calendar Help
+
+Title: HOW TO CREATE A CALENDAR USING DJANGO
+Author: Hui Wen
+Date: 7/24/2018
+URL: https://www.huiwenteo.com/normal/2018/07/24/django-calendar.html
+
+Landing page template
+Author: Unknown
+Date: 12/4/2022
+URL: https://tailwindui.com/components/preview
+
+Title: Using mixins with class-based views
+Author: Unknown
+Date: none
+URL: https://docs.djangoproject.com/en/4.1/topics/class-based-views/mixins/
+
+Title: Making queries
+Author: Unknown
+Date: none
+https://docs.djangoproject.com/en/4.1/topics/db/queries/
+
+Title: Python quickstart
+Author: Unknown
+Date: none
+https://developers.google.com/calendar/api/quickstart/python
+
+Title: Use Google API with a token [Django & AllAuth]
+Author: ayrunn
+Date: Nov 1, 2020
+https://stackoverflow.com/questions/51575127/use-google-api-with-a-token-django-allauth
+
+Title: Navbars
+Author: None
+Date: None
+https://tailwindui.com/components/application-ui/navigation/navbars

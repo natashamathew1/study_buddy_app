@@ -1,0 +1,239 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% load socialaccount %}
+<!doctype html>
+{% if user.is_authenticated %}
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
+
+
+<!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="multiple-select.min.js"></script>
+
+
+  </head>
+
+
+
+</html>
+{% load socialaccount %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0 auto;
+  max-height: auto;
+
+}
+
+.container {
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  max-width: 55%;
+
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 50px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+
+</style>
+</head>
+
+<header>
+  <!-- Navbar -->
+  <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.1);">
+    <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarExample01"
+      aria-controls="navbarExample01"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarExample01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="/study_buddy_app/">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/study_buddy_app/home/">Chat</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/study_buddy_app/deptlist/">Course List</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/study_buddy_app/user/">User Info</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/study_buddy_app/searchResults/">Search Users</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/study_buddy_app/calendar/">Calendar</a>
+      </li>
+      </ul>
+    </div>
+    </div>
+  </nav> -->
+    {% include 'study_buddy_app/Nav_Chat.html' with first=user_firstname last=user_lastname header="Chat Room"%}
+  </header>
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+
+<body class="d-flex flex-column min-vh-100">
+
+<div align="center">
+    <!-- <h2>Chat Room</h2> -->
+</div>
+
+<p></p>
+<p></p>
+<div class="container">
+    <style>
+    input[type=text], select {
+    width: 100%;
+    padding: 20px 40px;
+    margin: 20px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 55%;
+    }
+
+    input[type=submit] {
+    width: 100%;
+    background-color: #0275d8;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 55%;
+
+    }
+
+    input[type=submit]:hover {
+    background-color: #05036b;
+    margin-top: 55%;
+    }
+
+
+    </style>
+
+
+
+  <br></br>
+    <form id="post-form" method="POST" action="/study_buddy_app/home/checkview">
+        {% csrf_token %}
+        {% if friend_list %}
+      <select id="select" multiple = "multiple" name="dropdown[]" placeholder= 'Select Users'>
+
+            {% for each in friend_list %}
+            <option value="{{ each.current_user.username }}">{{ each.current_user.username }}</option>
+            {% endfor %}
+          {% else %}
+          <select id="select" name="dropdown[]" placeholder= 'Select Users'>
+            <option disabled="No friends">No friends, add a friend to begin chatting</option>
+        {% endif %}
+      </select>
+        <input type="hidden" name="room_name" id="room_name"  value="{{user.username}}"/>
+        <input type="hidden" name="username" id="username"  value="{{user.username}}"/>
+        <input type="submit" value="Enter Room">
+    </form>
+<script>
+  $(function() {
+    $('#select').multipleSelect({
+    placeholder: 'Select Users'
+  })
+  });
+
+</script>
+</div>
+
+
+
+
+</body>
+
+
+<footer class="text-center text-lg-start bg-light text-muted mt-auto">
+  <div class="text-center p-3 me-5 d-none d-lg-block">
+    <span>Page Authors: Ana Borges, Bao Nguyen, Evan Tierney, Natasha Mathew, and Holden Present</span>
+  </div>
+  <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+  © 2022 Copyright: None
+  </div>
+</footer>
+
+
+{% else %}
+<div class="text-center" style="margin-top: 2%;">
+    <p>Not logged in</p>
+
+    <form action="/study_buddy_app/sign_in/">
+      <input type="submit" value="Sign In" />
+    </form>
+</div>
+{% endif %}
+
+
+</html>

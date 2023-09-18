@@ -1,0 +1,33 @@
+{% load socialaccount %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<html>
+  <head>
+    <title>Google Registration</title>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <div class="text-center">
+      {% if user.is_authenticated %}
+      <h1>My Google Login Project</h1>
+      
+      <p>Welcome, {{ user.username }} !</p>
+
+      {% else %}
+      <h1>My Google Login Project</h1>
+      <a href="{% provider_login_url 'google' %}">Login with Google</a>
+      {% endif %}
+    </div>
+  </body>
+
+
+  <footer class="text-center text-lg-start bg-light text-muted mt-auto">
+    <div class="text-center p-3 me-5 d-none d-lg-block">
+      <span>Page Authors: Ana Borges, Bao Nguyen, Evan Tierney, Natasha Mathew, and Holden Present</span>
+    </div>
+  <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2022 Copyright: None
+  </div>
+</footer>
+</html>

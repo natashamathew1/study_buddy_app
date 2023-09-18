@@ -1,0 +1,145 @@
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html>
+<head>
+    <title>{{ dept_name }}</title>
+</head>
+{% if user.is_authenticated %}
+<header>
+    <!-- Navbar -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.1);">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/home/">Chat</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/deptlist/">Course List</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/user/">User Info</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/searchResults/">Search Users</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/calendar/">Calendar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+    {% include 'study_buddy_app/Nav_None.html' with first=user.first_name last=user.last_name dept_name=dept_name header="Classes"%}
+</header>
+
+{% else %}
+<header>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.1);">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarExample01"
+        aria-controls="navbarExample01"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarExample01">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="/study_buddy_app/">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/study_buddy_app/deptlist/">Course List</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+{% endif %}
+  
+
+<body class="d-flex flex-column min-vh-100">
+  <!-- <br>
+  <h5 class="text-center">Click on a class to find other users in the class</h5>
+  <br>
+  <div class="list-group gap-2 col-3 mx-auto">
+    {% for class in page_obj %}
+      <a href="/study_buddy_app/searchResults/?q={{class.subject}}+{{class.catalog_number}}" class="text-center list-group-item list-group-item-action list-group-item-primary">{{ class.subject }} {{ class.catalog_number }} -- Section {{ class.course_section }}</a>
+    {% endfor %}
+  </div> -->
+  <br>
+  <h5 class="text-center">Select a class to find other users in the class or add it to your profile</h5>
+  <br>
+  <form action="/study_buddy_app/user/addclass" method="post">
+    {% csrf_token %}
+    <fieldset>
+      {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+      <!-- List of classes -->
+      <div class="list-group col-3 mx-auto">
+        {% for class in response %}        
+          <input type="radio" class="btn-check" name="class" id="class{{ forloop.counter }}" value="{{ class.pk }}">
+          <label class="btn btn-outline-primary" for="class{{ forloop.counter }}">{{ class.subject }} {{ class.catalog_number }} -- Section {{ class.course_section }}</label><br>
+        {% endfor %}
+      </div>
+    </fieldset>
+
+    <!-- Buttons -->
+    <div class="text-center">
+      <!-- "Add Class" button -->
+      {% if user.is_authenticated %}
+        <input class="btn btn-primary" type="submit" value="Add Class">
+      {% endif %}
+      <!-- "Find Users" button -->
+      <input class="btn btn-primary" type="submit" value="Find Users" formaction="classlookup/">
+    </div>
+  </form>
+
+  <!-- Pagination -->
+  <!-- <br>
+  <nav aria-label="deptlist paginator">
+    <ul class="pagination justify-content-center">
+      {% for pg in page_obj.paginator %}
+        <li class="page-item"><a class="page-link" href="?page={{ pg.number }}">{{ pg.number }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+  <nav aria-label="current page indicator">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a>
+      </li>
+    </ul>
+  </nav> -->
+</body>
+
+<footer class="text-center text-lg-start bg-light text-muted mt-auto">
+    <div class="text-center p-3 me-5 d-none d-lg-block">
+      <span>Page Authors: Ana Borges, Bao Nguyen, Evan Tierney, Natasha Mathew, and Holden Present</span>
+    </div>
+  <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2022 Copyright: None
+  </div>
+</footer>
+</html>

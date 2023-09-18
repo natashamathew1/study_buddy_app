@@ -1,0 +1,181 @@
+{% load crispy_forms_tags %}
+{% load ratings %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+{% if user.is_authenticated %}
+<header>
+    <!-- Navbar -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.1);">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/home/">Chat</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/deptlist/">Course List</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/user/">User Info</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/searchResults/">Search Users</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/calendar/">Calendar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+    {% include 'study_buddy_app/Nav_None.html' with first=first last=last header=""%}
+
+{% if successful_submit %}
+<div class="alert alert-success alert-dismissible" role="alert">
+  <div>You've scheduled an event</div>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+  </header>
+  <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!--Bootstrap CSS-->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+
+
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+
+<body class="d-flex flex-column min-vh-100">
+	<div class="container mx-auto text-center" style="margin-top: 2%;">
+		<div class="card p-4" style="margin-right: 25%; margin-left: 25%;">
+            <h4 class="card-title font-weight-bold text-center">{{ object.user.username|title }}</h4>
+            <hr>
+            <div class="card-text">
+                <p class="text-muted mb-0" style="font-size: 12px">Username:</p>
+                <p>{{ object.user.username }}</p>
+                <p class="text-muted mb-0" style="font-size: 12px">Name:</p>
+                <p>{{ object.user.first_name }} {{ object.last_name }}</p>
+                <p class="text-muted mb-0" style="font-size: 12px">Email:</p>
+                <p>{{ object.user.email }} </p>
+                <hr>
+        <p class="text-muted mb-0" style="font-size: 12px">Classes:</p>
+                        {% for c in object.classes.all %} <!-- need to get a classes dict or some other way to iterate -->
+                            <p><li>{{ c }}</li></p>
+                        {% empty %}
+                            <p>No classes yet</p>
+                        {% endfor %}
+                <hr>
+                <p>   </p>
+
+                {% load static %}
+                <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+                <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+                {% if not friends %}
+                <p> How good of a Study Buddy am I?</p>
+                {% ratings object.user icon_height icon_width%}
+                <!--<p>request friend</p>-->
+                <!--<h1>{{ object.user }} <a href="study_buddy_app/send_friend_request/">send friend request</a></h1>-->
+                <!--<h1><a href="study_buddy_app/send_friend_request/">send friend request</a></h1>-->
+                <h1></h1><a href="study_buddy_app/send_friend_request/"><button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#profileModal">Send Friend Request</button></a>
+
+                {% endif %}
+
+                {% if friends %}
+                <p> Rate me as a Study Buddy!</p>
+                {% ratings object.user%}
+                <hr>
+                <p class="text-muted mb-0" style="font-size: 12px">Set a study session meeting:</p>
+                <p></p>
+                <form method="post" >
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Set Study Session</button>
+                </form>
+                 </hr>
+                <hr>
+                {% endif %}
+
+                <!-- <p> request friend</p>
+                <h1>{{ object.user }} <a href="study_buddy_app/send_friend_request/">send friend request</a></h1>
+                {% load static %}
+                <p> Rate me as a Study Buddy!</p>
+                {% ratings object.user %}
+                <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+                <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+        <form method="post" >
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Send message">
+        </form> -->
+        <p>   </p>
+        <p class="text-muted mb-0" style="font-size: 12px">Start a chat:</p>
+        <p></p>
+        <form method="post" action="/study_buddy_app/home/go_to_chat">
+          <input
+            type="hidden"
+            name="username"
+            id="username"
+            value="{{object.user.username}}"
+          />
+          <button type="submit" class="btn btn-primary" >
+            {% csrf_token %}
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-text"
+                viewBox="0 0 16 16">
+                <path
+                  d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                <path
+                  d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+              </svg>
+          </button>
+      </form>
+      </div>
+    </div>
+	</div>
+</body>
+
+
+
+
+<footer class="text-center text-lg-start bg-light text-muted mt-auto">
+    <div class="text-center p-3 me-5 d-none d-lg-block">
+      <span>Page Authors: Ana Borges, Bao Nguyen, Evan Tierney, Natasha Mathew, and Holden Present</span>
+    </div>
+  <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2022 Copyright: None
+  </div>
+</footer>
+
+{% else %}
+<div class="text-center" style="margin-top: 2%;">
+    <p>Not logged in</p>
+
+    <form action="/study_buddy_app/sign_in/">
+      <input type="submit" value="Sign In" />
+    </form>
+</div>
+{% endif %}

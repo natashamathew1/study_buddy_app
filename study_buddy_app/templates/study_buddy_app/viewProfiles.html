@@ -1,0 +1,106 @@
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+{% load ratings %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+{% if user.is_authenticated %}
+<header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.1);">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/home/">Chat</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/deptlist/">Course List</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/user/">User Info</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/searchResults/">Search Users</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/calendar/">Calendar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+
+
+<!--User-->
+
+   <!-- <meta charset="UTF-8">
+    <title>Title</title>
+    <h1>{{ question.question_text }}</h1>-->
+
+
+    {% for deepthought in profile_list %}
+      <!--  </p>Text : {{  deepthought.user.username }}<p>-->
+
+    <body class="d-flex flex-column min-vh-100">
+        <div class="container mx-auto text-center" style="margin-top: 2%; margin-bottom: 2%;">
+            <div class="card p-4" style="margin-right: 35%; margin-left: 35%;">
+                <hr>
+                <div class="card-text">
+                    <p class="text-muted mb-0" style="font-size: 12px">Username:</p>
+                    <p>{{ deepthought.user.username }}</p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Name:</p>
+                    <p>{{ deepthought.user.first_name }} {{ deepthought.user.last_name }}</p>
+                    <p class="text-muted mb-0" style="font-size: 12px">Email:</p>
+                    <p>{{ deepthought.user.email }} </p>
+                    {% load static %}
+
+                    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+                    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+
+                    <p> Rate me as a Study Buddy!</p>
+                    {% ratings deepthought.user %}
+                    <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+                    <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+                </div>
+            </div>
+        </div>
+    </body>
+    {% endfor %}
+
+    <footer class="text-center text-lg-start bg-light text-muted mt-auto">
+        <div class="text-center p-3 me-5 d-none d-lg-block">
+          <span>Page Authors: Ana Borges, Bao Nguyen, Evan Tierney, Natasha Mathew, and Holden Present</span>
+        </div>
+      <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2022 Copyright: None
+      </div>
+    </footer>
+
+{% else %}
+<div class="text-center" style="margin-top: 2%;">
+    <p>Not logged in</p>
+
+    <form action="/study_buddy_app/sign_in/">
+      <input type="submit" value="Sign In" />
+    </form>
+</div>
+{% endif %}

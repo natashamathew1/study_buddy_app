@@ -1,0 +1,88 @@
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+{% load ratings %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<header>
+    <!-- Navbar -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.1);">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/home/">Chat</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/deptlist/">Course List</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/user/">User Info</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/searchResults/">Search Users</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/study_buddy_app/calendar/">Calendar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+    {% include 'study_buddy_app/Nav_None.html' with first=first last=last header="Friends"%}
+  </header>
+
+<body class="d-flex flex-column min-vh-100">
+<!--<p class="text-center" style="margin-top: 2%;">Friends</p>-->
+<!-- <h1 class="text-center" style="margin-top: 2%;">Friends</h1> -->
+
+{% if friend_list %}
+    {% for each in friend_list %}
+        {% if each.current_user != user %}
+            <!--<div class="text-center" style="margin-top: 2%;">-->
+            <!--<p>{{ each.current_user }}</p>
+                <a href="publicProfile/{{ each.current_user.username }}/"><button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#profileModal">View Profile</button></a>
+                <a href="remove_friend/{{ each.current_user.username }}/"><button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#profileModal">Remove Friend</button></a>-->
+                <div class="card" style="margin: 10px">
+                <!--<div class="card">-->
+                    <div class="card-header">
+                        Friend
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ each.current_user.username }}</h5>
+                        <a href="publicProfile/{{ each.current_user.username }}/"><button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#profileModal">View Profile</button></a>
+                        <a href="remove_friend/{{ each.current_user.username }}/"><button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#profileModal">Remove Friend</button></a>
+                    </div>
+                </div>
+        {% endif %}
+    {% endfor %}
+            <!--</div>-->
+{% else %}
+    <p class="text-center" style="margin-top: 2%;"> No Friends </p>
+
+{% endif %}
+</body>
+
+<footer class="text-center text-lg-start bg-light text-muted mt-auto">
+    <div class="text-center p-3 me-5 d-none d-lg-block">
+      <span>Page Authors: Ana Borges, Bao Nguyen, Evan Tierney, Natasha Mathew, and Holden Present</span>
+    </div>
+  <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2022 Copyright: None
+  </div>
+</footer>

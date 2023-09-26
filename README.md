@@ -9,6 +9,7 @@ Table of Contents
 3. Profile Feature
 4. Contributers
 
+
 1. Features
 The Study Buddy Finder offers a range of features to enhance the study experience for users, including:
 

@@ -13,12 +13,12 @@ Table of Contents
 1. Features
 The Study Buddy Finder offers a range of features to enhance the study experience for users, including:
 
-User Authentication: Users can create accounts, log in, and manage their profile.
-Calender: Users can add and view study sessions with friends
-Chat: A built-in messaging system allows users to communicate with their study buddies.
-Friend and Profile Management: Users can connect with other students as friends and update their profiles.
-Rating: Can rate other users and view their rating out of 5 stars
-Search: Users can search for other users by name or classes
+- User Authentication: Users can create accounts, log in, and manage their profile.
+- Calender: Users can add and view study sessions with friends
+- Chat: A built-in messaging system allows users to communicate with their study buddies.
+- Friend and Profile Management: Users can connect with other students as friends and update their profiles.
+- Rating: Can rate other users and view their rating out of 5 stars
+- Search: Users can search for other users by name or classes
 
 In this README, we will focus on the "Friend" and "Profile" features.
 
